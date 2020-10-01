@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-@Repository
+
 public class InMemoryUserRepository implements UserRepository {
     public static final int USER_ID1 = 1;
     public static final int USER_ID2 = 2;
