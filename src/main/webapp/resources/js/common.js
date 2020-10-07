@@ -1,7 +1,18 @@
-var context, form;
+var ajaxUrl, datatableApi, updateTable, context, form;
 
-function makeEditable(ctx) {
-    context = ctx;
+function makeEditable(aUrl, datatableOpts, upTable) {
+    ajaxUrl = aUrl;
+    datatableApi = $("#datatable").DataTable(
+        $.extend(true, datatableOpts,
+            {
+                "ajax": {
+                    "url": ajaxUrl,
+                    "dataSrc": ""
+                },
+                "padding": false,
+                "info": true
+            }));
+    updateTable = upTable;
     form = $('#detailsForm');
     $(document).ajaxError(function (event, jqXHR, options, jsExc) {
         failNoty(jqXHR);
@@ -17,7 +28,8 @@ function add() {
 
 function updateRow(id) {
     $("#modalTitle").html("Edit");
-    $.get(context.ajaxUrl + id, function (data) {
+    form.find(":input").val("");
+    $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
         });
@@ -28,10 +40,10 @@ function updateRow(id) {
 function deleteRow(id) {
     if (confirm("Confirm")) {
         $.ajax({
-            url: context.ajaxUrl + id,
+            url: ajaxUrl + id,
             type: "DELETE"
         }).done(function () {
-            context.updateTable();
+            updateTable();
             successNoty("deleted");
         });
     }
@@ -44,12 +56,12 @@ function updateTableByData(data) {
 function save() {
     $.ajax({
         type: "POST",
-        url: context.ajaxUrl,
+        url: ajaxUrl,
         data: form.serialize()
     }).done(function () {
         $("#editRow").modal("hide");
-        context.updateTable();
-        successNoty("common.saved");
+        updateTable();
+        successNoty("Saved");
     });
 }
 
@@ -65,7 +77,7 @@ function closeNoty() {
 function successNoty(key) {
     closeNoty();
     new Noty({
-        text: "<span class='fa fa-lg fa-check'></span> &nbsp;" + i18n[key],
+        text: "<span class='fa fa-lg fa-check'></span> &nbsp;",
         type: 'success',
         layout: "bottomRight",
         timeout: 1000
@@ -74,8 +86,9 @@ function successNoty(key) {
 
 function failNoty(jqXHR) {
     closeNoty();
+    var errorInfo = JSON.parse(jqXHR.responseText);
     failedNote = new Noty({
-        text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + "errorStatus" + ": " + jqXHR.status + (jqXHR.responseJSON ? "<br>" + jqXHR.responseJSON : ""),
+        text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo.typeMessage + "<br>" + errorInfo.details.join("<br>"),
         type: "error",
         layout: "bottomRight"
     }).show();

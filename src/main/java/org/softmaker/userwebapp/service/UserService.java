@@ -77,6 +77,7 @@ public class UserService implements UserDetailsService {
     public void enable(int id, boolean enabled){
         User user = get(id);
         user.setEnabled(enabled);
+        repository.save(user);
     }
 
     @Override

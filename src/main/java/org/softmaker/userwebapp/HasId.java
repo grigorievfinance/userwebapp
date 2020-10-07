@@ -10,7 +10,7 @@ public interface HasId {
     default boolean isNew(){return getId() == null;}
 
     default int id(){
-        Assert.notNull(getId(), "Entity must has is");
+        Assert.notNull(getId(), "Entity must has id");
         return getId();
     }
 }
