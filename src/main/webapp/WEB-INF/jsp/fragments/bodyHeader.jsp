@@ -20,7 +20,7 @@
                                 <a class="btn btn-info mr-1" href="users">Users</a>
                             </sec:authorize>
                             <a class="btn btn-info mr-1" href="profile"><sec:authentication property="principal.userTo.name"/>Profile</a>
-                            <button class="btn btn-primary my-1" type="submit">
+                            <button class="btn btn-primary" type="submit">
                                 <span class="fa fa-sign-out"></span>
                             </button>
                         </form:form>

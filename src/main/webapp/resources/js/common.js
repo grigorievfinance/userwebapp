@@ -1,4 +1,4 @@
-var ajaxUrl, datatableApi, updateTable, context, form;
+var ajaxUrl, datatableApi, updateTable, form;
 
 function makeEditable(aUrl, datatableOpts, upTable) {
     ajaxUrl = aUrl;
@@ -18,6 +18,12 @@ function makeEditable(aUrl, datatableOpts, upTable) {
         failNoty(jqXHR);
     });
     $.ajaxSetup({cache: false});
+
+    // var token = $("meta[name='_csrf']").attr("content");
+    // var header = $("meta[name='_csrf_header']").attr("content");
+    // $(document).ajaxSend(function (e, xhr, options) {
+    //     xhr.setRequestHeader(header, token);
+    // });
 }
 
 function add() {
@@ -50,7 +56,7 @@ function deleteRow(id) {
 }
 
 function updateTableByData(data) {
-    context.datatableApi.clear().rows.add(data).draw();
+    datatableApi.clear().rows.add(data).draw();
 }
 
 function save() {
@@ -88,7 +94,7 @@ function failNoty(jqXHR) {
     closeNoty();
     var errorInfo = JSON.parse(jqXHR.responseText);
     failedNote = new Noty({
-        text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo.typeMessage + "<br>" + errorInfo.details.join("<br>"),
+        text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + jqXHR.status + "<br>" + errorInfo.type + "<br>" + errorInfo.details,
         type: "error",
         layout: "bottomRight"
     }).show();

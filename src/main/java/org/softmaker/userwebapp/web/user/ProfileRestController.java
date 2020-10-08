@@ -23,14 +23,14 @@ public class ProfileRestController extends AbstractUserController {
     static final String REST_URL = "/rest/profile";
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public User get() {
-        return super.get(authUserId());
+    public User get(@AuthenticationPrincipal AuthorizedUser authorizedUser) {
+        return super.get(authorizedUser.getId());
     }
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete() {
-        super.delete(authUserId());
+    public void delete(@AuthenticationPrincipal AuthorizedUser authorizedUser) {
+        super.delete(authorizedUser.getId());
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

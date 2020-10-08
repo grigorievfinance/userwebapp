@@ -7,7 +7,7 @@
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
-<div class="jumbotron py-0">
+<div class="jumbotron">
     <div class="container">
         <c:if test="${param.error}">
             <div class="error">${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</div>
@@ -17,9 +17,12 @@
         </c:if>
         <sec:authorize access="isAnonymous()">
             <div class="pt-4">
-                <a class="btn btn-lg btn-success" href="profile/register">Register</a>
-                <button type="submit" class="btn btn-lg btn-primary" onclick="login('admin@gmail.com', 'admin')">
-                    Login Admin
+                <a class="btn btn-success" href="profile/register">Register</a>
+                <button type="submit" class="btn btn-primary" onclick="login('admin@gmail.com', 'admin')">
+                    Login as Admin
+                </button>
+                <button type="submit" class="btn btn-secondary" onclick="login('user@yandex.ru', 'password')">
+                    Login as User
                 </button>
             </div>
         </sec:authorize>
