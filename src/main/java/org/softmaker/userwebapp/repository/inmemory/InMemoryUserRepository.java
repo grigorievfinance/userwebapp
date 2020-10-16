@@ -2,6 +2,7 @@ package org.softmaker.userwebapp.repository.inmemory;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.softmaker.userwebapp.model.Role;
 import org.softmaker.userwebapp.model.User;
 import org.softmaker.userwebapp.repository.UserRepository;
 import org.springframework.stereotype.Repository;
@@ -14,15 +15,24 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-
 public class InMemoryUserRepository implements UserRepository {
-    public static final int USER_ID1 = 1;
-    public static final int USER_ID2 = 2;
+    public static final int USER_ID = 100000;
+    public static final int ADMIN_ID = 100001;
+
+    private final int initValue = 100000;
+
+    public static final User USER = new User(null, "User", "user@yandex.ru", "password", Role.USER);
+    public static final User ADMIN = new User(null, "Admin", "admin@gmail.com", "admin",Role.ADMIN, Role.USER);
 
     private static final Logger log = LoggerFactory.getLogger(InMemoryUserRepository.class);
 
-    private Map<Integer, User> repository = new ConcurrentHashMap<>();
-    private AtomicInteger counter = new AtomicInteger(0);
+    private final Map<Integer, User> repository = new ConcurrentHashMap<>();
+    private final AtomicInteger counter = new AtomicInteger(initValue);
+
+    {
+        save(USER);
+        save(ADMIN);
+    }
 
     @Override
     public User save(User user) {
