@@ -12,7 +12,7 @@ VALUES ('USER', 100000),
        ('ADMIN', 100001),
        ('USER', 100001);
 
-INSERT INTO orders (date_time, description, price, user_id)
-VALUES ('2020-06-03 10:00:00', 'Create test for Java EE app', 40000, 100000),
-       ('2020-06-03 10:00:00', 'Create Landing Page', 10000, 100001),
-       ('2020-06-03 10:00:00', 'Create Android App', 30000, 100000)
+INSERT INTO orders (date_time, description, price, deadline, user_id)
+VALUES ('2020-06-03 10:00:00', 'Create test for Java EE app', 40000, '2020-06-30', 100000),
+       ('2020-06-05 12:00:00', 'Create Landing Page', 10000, '2020-06-20', 100001),
+       ('2020-06-19 10:00:00', 'Create Android App', 30000, '2020-07-15', 100000)

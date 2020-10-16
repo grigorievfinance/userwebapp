@@ -31,6 +31,7 @@ CREATE TABLE orders
     date_time       TIMESTAMP       NOT NULL,
     description     VARCHAR(255)    NOT NULL,
     price           DECIMAL         NOT NULL,
+    deadline        VARCHAR(255)    NOT NULL,
     user_id         INTEGER         NOT NULL,
     FOREIGN KEY (user_id) REFERENCES USERS (id) ON DELETE CASCADE
 );

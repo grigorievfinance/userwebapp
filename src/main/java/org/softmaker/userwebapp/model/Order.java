@@ -13,7 +13,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "orders", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "date_time"}, name = "orders_unique_user_datetime_idx")})
@@ -22,7 +24,7 @@ public class Order extends AbstractBaseEntity{
     @Column(name = "date_time", nullable = false)
     @NotNull
     @DateTimeFormat(pattern = DateTimeUtil.DATE_TIME_PATTERN)
-    private LocalDateTime dateTime;
+    private LocalDateTime dateTime = LocalDateTime.now();
 
     @Column(name = "description", nullable = false)
     @NotBlank
@@ -34,6 +36,11 @@ public class Order extends AbstractBaseEntity{
     @Range(min = 10, max = 1000000)
     private BigDecimal price;
 
+    @Column(name = "deadline", nullable = false)
+    @NotNull
+    @DateTimeFormat(pattern = DateTimeUtil.DATE_TIME_PATTERN)
+    private LocalDate deadline;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -44,15 +51,16 @@ public class Order extends AbstractBaseEntity{
     public Order() {
     }
 
-    public Order(LocalDateTime dateTime, String description, BigDecimal price){
-        this(null, dateTime, description, price);
+    public Order(String description, BigDecimal price, LocalDate deadline){
+        this(null, description, price, deadline);
     }
 
-    public Order(Integer id, LocalDateTime dateTime, String description, BigDecimal price) {
+    public Order(Integer id, String description, BigDecimal price, LocalDate deadline) {
         super(id);
-        this.dateTime = dateTime;
+        this.dateTime = LocalDateTime.now();
         this.description = description;
         this.price = price;
+        this.deadline = deadline;
     }
 
     public LocalDateTime getDateTime() {
@@ -61,6 +69,14 @@ public class Order extends AbstractBaseEntity{
 
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public LocalTime getTime(){
+        return dateTime.toLocalTime();
+    }
+
+    public LocalDate getDate(){
+        return dateTime.toLocalDate();
     }
 
     public String getDescription() {
@@ -79,6 +95,14 @@ public class Order extends AbstractBaseEntity{
         this.price = price;
     }
 
+    public LocalDate getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(LocalDate deadline) {
+        this.deadline = deadline;
+    }
+
     public User getUser() {
         return user;
     }
@@ -94,6 +118,7 @@ public class Order extends AbstractBaseEntity{
                 ", dateTime=" + dateTime +
                 ", description='" + description + '\'' +
                 ", price=" + price +
+                ", deadline=" + deadline +
                 '}';
     }
 }
