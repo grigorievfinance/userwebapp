@@ -51,6 +51,7 @@ public class OrderRestController extends AbstractOrderController{
 
     @Override
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void update(@Validated(View.Web.class) @RequestBody Order order, @PathVariable int id) {
         super.update(order, id);
     }
