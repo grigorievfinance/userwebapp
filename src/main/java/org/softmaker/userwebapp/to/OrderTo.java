@@ -1,6 +1,7 @@
 package org.softmaker.userwebapp.to;
 
 import java.beans.ConstructorProperties;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -11,15 +12,18 @@ public class OrderTo extends BaseTo{
 
     private final String description;
 
+    private BigDecimal price;
+
     private final LocalDate deadline;
 
     private final boolean excess;
 
-    @ConstructorProperties({"id", "dateTime", "description", "deadline", "excess"})
-    public OrderTo(Integer id, LocalDateTime dateTime, String description, LocalDate deadline, boolean excess) {
+    @ConstructorProperties({"id", "dateTime", "description", "price", "deadline", "excess"})
+    public OrderTo(Integer id, LocalDateTime dateTime, String description, BigDecimal price, LocalDate deadline, boolean excess) {
         super(id);
         this.dateTime = dateTime;
         this.description = description;
+        this.price = price;
         this.deadline = deadline;
         this.excess = excess;
     }
@@ -30,6 +34,10 @@ public class OrderTo extends BaseTo{
 
     public String getDescription() {
         return description;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
     }
 
     public LocalDate getDeadline() {

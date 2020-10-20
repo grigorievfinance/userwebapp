@@ -1,21 +1,18 @@
 package org.softmaker.userwebapp.web;
 
-import org.softmaker.userwebapp.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class  RootController {
 
-    @Autowired
-    private UserService service;
-
     @GetMapping("/")
     public String root(){
-        return "redirect:users";
+        return "redirect:orders";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/users")
     public String getUsers(){
         return "users";
@@ -24,5 +21,10 @@ public class  RootController {
     @GetMapping("/login")
     public String login(){
         return "login";
+    }
+
+    @GetMapping("/orders")
+    public String getOrders(){
+        return "orders";
     }
 }

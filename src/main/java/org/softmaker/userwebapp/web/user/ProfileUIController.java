@@ -32,7 +32,7 @@ public class ProfileUIController extends AbstractUserController{
         super.update(userTo, authorizedUser.getId());
         SecurityUtil.get().update(userTo);
         status.setComplete();
-        return "redirect:/users";
+        return "redirect:/orders";
     }
 
     @GetMapping("/register")

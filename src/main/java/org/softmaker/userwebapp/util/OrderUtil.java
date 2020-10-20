@@ -31,6 +31,6 @@ public class OrderUtil {
     }
 
     public static OrderTo createTo(Order order, boolean excess){
-        return new OrderTo(order.getId(), order.getDateTime(), order.getDescription(), order.getDeadline(), excess);
+        return new OrderTo(order.getId(), order.getDateTime(), order.getDescription(), order.getPrice(), order.getDeadline(), excess);
     }
 }

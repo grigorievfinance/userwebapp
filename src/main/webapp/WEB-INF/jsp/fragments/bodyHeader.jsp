@@ -5,7 +5,7 @@
 
 <nav class="navbar navbar-dark bg-dark py-0">
     <div class="container">
-        <a href="users" class="navbar-brand"><img src="resources/images/icon.png">User Web Application</a>
+        <a href="orders" class="navbar-brand"><img src="resources/images/icon.png">User Web Application</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
