@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row">
             <div class="col-5 offset-3">
-                <h3>${userTo.name} ${register ? Register : Profile} </h3>
+                <h3>${userTo.name} <spring:message code="${register ? 'app.register' : 'app.profile'}"/></h3>
                 <form:form class="form-group" modelAttribute="userTo" method="post" action="${register ? 'profile/register' : 'profile'}"
                            charset="utf-8" accept-charset="UTF-8">
                     <input name="id" value="${userTo.id}" type="hidden">
@@ -21,10 +21,12 @@
                     <div class="text-right">
                         <a class="btn btn-secondary" href="#" onclick="window.history.back()">
                             <span class="fa fa-close"></span>
-                            Cancel
+                            <spring:message code="common.cancel"/>
                         </a>
-                        <button type="submit" class="btn btn-primary"/>
-                        <span class="fa fa-check"></span>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="fa fa-check"></span>
+                            <spring:message code="common.save"/>
+                        </button>
                     </div>
                 </form:form>
             </div>

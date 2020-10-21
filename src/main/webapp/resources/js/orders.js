@@ -62,6 +62,8 @@ $(function () {
        },
    }, updateFilteredTable);
 
+    $.datetimepicker.setLocale(localeCode);
+
     var startDate = $('#startDate');
     var endDate = $('#endDate');
     startDate.datetimepicker({

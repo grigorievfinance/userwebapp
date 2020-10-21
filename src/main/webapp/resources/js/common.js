@@ -10,7 +10,10 @@ function makeEditable(aUrl, datatableOpts, upTable) {
                     "dataSrc": ""
                 },
                 "padding": false,
-                "info": true
+                "info": true,
+                "language":{
+                    "search": i18n["common.search"]
+                }
             }));
     updateTable = upTable;
     form = $('#detailsForm');
@@ -33,7 +36,7 @@ function add() {
 }
 
 function updateRow(id) {
-    $("#modalTitle").html("Edit");
+    $("#modalTitle").html(i18n["editTitle"]);
     form.find(":input").val("");
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
@@ -44,13 +47,13 @@ function updateRow(id) {
 }
 
 function deleteRow(id) {
-    if (confirm("Confirm")) {
+    if (confirm(i18n['common.confirm'])) {
         $.ajax({
             url: ajaxUrl + id,
             type: "DELETE"
         }).done(function () {
             updateTable();
-            successNoty("deleted");
+            successNoty("common.deleted");
         });
     }
 }
@@ -67,7 +70,7 @@ function save() {
     }).done(function () {
         $("#editRow").modal("hide");
         updateTable();
-        successNoty("Saved");
+        successNoty("common.saved");
     });
 }
 
@@ -83,7 +86,7 @@ function closeNoty() {
 function successNoty(key) {
     closeNoty();
     new Noty({
-        text: "<span class='fa fa-lg fa-check'></span> &nbsp;",
+        text: "<span class='fa fa-lg fa-check'></span> &nbsp;" + i18n[key],
         type: 'success',
         layout: "bottomRight",
         timeout: 1000
@@ -94,7 +97,7 @@ function failNoty(jqXHR) {
     closeNoty();
     var errorInfo = JSON.parse(jqXHR.responseText);
     failedNote = new Noty({
-        text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + jqXHR.status + "<br>" + errorInfo.type + "<br>" + errorInfo.details,
+        text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo.typeMessage + "<br>" + errorInfo.details.join("<br>"),
         type: "error",
         layout: "bottomRight"
     }).show();
