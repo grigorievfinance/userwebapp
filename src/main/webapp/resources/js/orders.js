@@ -111,4 +111,9 @@ $(function () {
     $('#dateTime').datetimepicker({
         format: 'Y-m-d H:i'
     });
+
+    $('#deadline').datetimepicker({
+        timepicker: false,
+        format: 'Y-m-d'
+    });
 });

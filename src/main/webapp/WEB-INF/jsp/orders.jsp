@@ -51,18 +51,20 @@
             <span class="fa fa-plus"></span>
             <spring:message code="common.add"/>
         </button>
-        <table class="table table-striped" id="datatable">
-            <thead>
-            <tr>
-                <th><spring:message code="order.dateTime"/></th>
-                <th><spring:message code="order.description"/></th>
-                <th><spring:message code="order.price"/></th>
-                <th><spring:message code="order.deadline"/></th>
-                <th></th>
-                <th></th>
-            </tr>
-            </thead>
-        </table>
+        <div class="mt-3">
+            <table class="table table-striped" id="datatable">
+                <thead>
+                <tr>
+                    <th><spring:message code="order.dateTime"/></th>
+                    <th><spring:message code="order.description"/></th>
+                    <th><spring:message code="order.price"/></th>
+                    <th><spring:message code="order.deadline"/></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+            </table>
+        </div>
     </div>
 </div>
 

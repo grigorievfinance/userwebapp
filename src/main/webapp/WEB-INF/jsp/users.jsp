@@ -15,19 +15,21 @@
             <span class="fa fa-plus"></span>
             <spring:message code="common.add"/>
         </button>
-        <table class="table table-striped" id="datatable">
-            <thead>
-            <tr>
-                <th><spring:message code="user.name"/></th>
-                <th><spring:message code="user.email"/></th>
-                <th><spring:message code="user.roles"/></th>
-                <th><spring:message code="user.active"/></th>
-                <th><spring:message code="user.registered"/></th>
-                <th></th>
-                <th></th>
-            </tr>
-            </thead>
-        </table>
+        <div class="mt-3">
+            <table class="table table-striped" id="datatable">
+                <thead>
+                <tr>
+                    <th><spring:message code="user.name"/></th>
+                    <th><spring:message code="user.email"/></th>
+                    <th><spring:message code="user.roles"/></th>
+                    <th><spring:message code="user.active"/></th>
+                    <th><spring:message code="user.registered"/></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+            </table>
+        </div>
     </div>
 </div>
 
