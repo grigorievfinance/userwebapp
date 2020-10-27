@@ -8,16 +8,20 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
+import static org.hibernate.validator.constraints.SafeHtml.WhiteListType.NONE;
+
 public class UserTo extends BaseTo implements HasIdAndEmail, Serializable {
     private static final long serialVersionUID = 1L;
 
     @NotBlank
     @Size(min = 2, max = 100)
+    @SafeHtml(whitelistType = NONE)
     private String name;
 
     @Email
     @NotBlank
     @Size(max = 100)
+    @SafeHtml(whitelistType = NONE)
     private String email;
 
     @NotBlank
