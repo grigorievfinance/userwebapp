@@ -21,7 +21,7 @@
                 <button type="submit" class="btn btn-primary" onclick="login('admin@gmail.com', 'admin')">
                     <spring:message code="app.login"/> Admin
                 </button>
-                <button type="submit" class="btn btn-secondary" onclick="login('user@yandex.ru', 'password')">
+                <button type="submit" class="btn btn-secondary" onclick="login('user@gmail.com', 'password')">
                     <spring:message code="app.login"/> User
                 </button>
             </div>
