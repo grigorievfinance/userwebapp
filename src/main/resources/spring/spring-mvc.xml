@@ -45,7 +45,11 @@
     <context:component-scan base-package="org.softmaker.userwebapp.web"/>
 
     <mvc:resources mapping="/resources/**" location="/resources/"/>
+
+    <!-- Swagger2 -->
+    <bean id="swagger2Config" class="org.softmaker.userwebapp.config.SpringFoxConfig"/>
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/jsp/"

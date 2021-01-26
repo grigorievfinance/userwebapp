@@ -1,6 +1,8 @@
 package org.softmaker.userwebapp.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -8,6 +10,7 @@ import org.hibernate.validator.constraints.SafeHtml;
 import org.softmaker.userwebapp.HasIdAndEmail;
 import org.softmaker.userwebapp.View;
 import org.springframework.util.CollectionUtils;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
