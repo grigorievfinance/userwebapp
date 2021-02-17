@@ -1,6 +1,7 @@
 package org.softmaker.userwebapp.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Range;
@@ -38,7 +39,7 @@ public class Order extends AbstractBaseEntity{
 
     @Column(name = "deadline", nullable = false)
     @NotNull
-    @DateTimeFormat(pattern = DateTimeUtil.DATE_TIME_PATTERN)
+    @DateTimeFormat(pattern = DateTimeUtil.DATE_PATTERN)
     private LocalDate deadline;
 
     @ManyToOne(fetch = FetchType.LAZY)
